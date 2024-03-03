@@ -1,0 +1,37 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      PGDATA: /data/postgres
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+
+  mssql:
+    container_name: sql-server
+    image: mcr.microsoft.com/mssql/server:2017-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "test123321"
+    ports:
+      - 1433:1433
+
+  oracle:
+    container_name: oracle
+    image: jeugenio/oracle-xe-11g
+    restart: always
+    environment:
+       ORACLE_PWD: "oracle"
+        # schema of the dump you want to import
+       SOURCE_SCHEMA: "change-or-delete-me"
+       SOURCE_TABLESPACE: "change-or-delete-me"
+       EXCLUDE: "user"
+       ORACLE_ALLOW_REMOTE: true
+    ports:
+      - "1521:1521"

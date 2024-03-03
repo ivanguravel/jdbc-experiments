@@ -1,0 +1,28 @@
+
+
+<configuration scan="true">
+<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <pattern>%-35(%d{yyyyMMdd HH:mm:ss.SSS} [%thread]) %-5level %logger{20} - %msg %n%n</pattern>
+    </encoder>
+</appender>
+
+    <logger name="org.postgresql" level="trace"/>
+    <logger name="com.microsoft" level="trace"/>
+    <logger name="oracle.jdbc.driver" level="trace"/>
+
+
+<logger name="jdbc.sqlonly" level="DEBUG"/>
+<logger name="jdbc.sqltiming" level="DEBUG"/>
+    <logger name="java.sql" level="DEBUG"/>
+
+
+<root level="INFO">
+    <appender-ref ref="STDOUT" />
+</root>
+
+<category name="p6spy">
+    <priority value="trace" />
+</category>
+
+</configuration>
